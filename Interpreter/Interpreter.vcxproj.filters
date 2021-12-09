@@ -27,9 +27,24 @@
     <ClInclude Include="Interpreter.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="grammar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="scanner.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InterpreterMain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="Interpreter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="grammar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="scanner.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

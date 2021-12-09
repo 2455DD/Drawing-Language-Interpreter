@@ -1,4 +1,4 @@
-﻿// header.h: 标准系统包含文件的包含文件，
+// header.h: 标准系统包含文件的包含文件，
 // 或特定于项目的包含文件
 //
 
@@ -13,3 +13,10 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+
+// 绘图Windows GDI
+#include <wingdi.h>
+#include <WinUser.h>
+#include <commdlg.h>
+
+// 语法分析器
