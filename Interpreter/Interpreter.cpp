@@ -326,10 +326,10 @@ LRESULT Interpreter::DrawAllPoint(HWND hWnd)
 		{
 			Ellipse(
 				hDC,
-				point.x - PointSize,
-				point.y - PointSize,
-				point.x + PointSize + 1.0,
-				point.y + PointSize + 1.0
+				static_cast<int>(round(point.x - static_cast<double>(PointSize))),
+				static_cast<int>(round(point.y - static_cast<double>(PointSize))),
+				static_cast<int>(round(point.x + static_cast<double>(PointSize) + 1.0)),
+				static_cast<int>(round(point.y + static_cast<double>(PointSize) + 1.0))
 			);
 		}else
 		{
