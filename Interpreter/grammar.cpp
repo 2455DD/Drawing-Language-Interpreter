@@ -92,6 +92,8 @@ void grammar::statement() {
 		case SCALE  : scale_statement();	break;
 		case ROT    : rot_statement();	    break;
 		case FOR    : for_statement();    	break;
+		case COLOR	: color_statement();	break;
+		case PSIZE	: size_statement();		break;
 		default     : syntax_error(2);
 	}
 	//back("statement");
@@ -130,6 +132,27 @@ void grammar::scale_statement() {
 		//call_match(")");
 	match_token(R_BRACKET);
 	//back("scale_statement");
+}
+
+void grammar::color_statement()
+{
+	match_token(COLOR);
+	match_token(IS);
+	match_token(L_BRACKET);
+	rgb_ptr[0] = expression();   // 构造RED表达式语法树
+	match_token(COMMA);
+	rgb_ptr[1] = expression();  // 构造GREEN表达式语法树
+	match_token(COMMA);
+	rgb_ptr[2] = expression();  // 构造BLUE表达式语法树
+	
+	match_token(R_BRACKET);
+}
+
+void grammar::size_statement()
+{
+	match_token(PSIZE);
+	match_token(IS);
+	size_ptr = expression();
 }
 
 void grammar::rot_statement() {

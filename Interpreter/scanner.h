@@ -14,7 +14,7 @@ namespace Scanner
 	//函数绘图语言中记号的分类与表示 
 	enum Token_Type					          //记号的类别 
 	{	
-		ORIGIN, SCALE, ROT, IS,               //保留字 
+		ORIGIN, SCALE, ROT, IS, COLOR,PSIZE,              //保留字 
 		TO,	STEP, DRAW,	FOR, FROM,			  //保留字
 		T,                                    //参数
 		SEMICO, L_BRACKET, R_BRACKET, COMMA,  //分隔符
@@ -27,7 +27,7 @@ namespace Scanner
 
 	static const char *TOKEN_TYPE[] =  
 	{	
-		"ORIGIN", "SCALE", "ROT", "IS",                                                      //保留字 
+		"ORIGIN", "SCALE", "ROT", "IS", "COLOR","PSIZE",                                                     //保留字 
 		"TO", "STEP", "DRAW", "FOR", "FROM",                                                 //保留字
 		"T",                                                                                 //参数
 		"SEMICO", "L_BRACKET", "R_BRACKET", "COMMA",		                                 //分隔符
@@ -67,7 +67,9 @@ namespace Scanner
 		{FROM,		"FROM",		0.0,		NULL},
 		{TO,		"TO",		0.0,		NULL},
 		{STEP,		"STEP",		0.0,		NULL},
-		{DRAW,		"DRAW",		0.0,		NULL}
+		{DRAW,		"DRAW",		0.0,		NULL},
+		{COLOR,"COLOR",0.0,NULL},
+		{PSIZE,"PSIZE",0.0,NULL}
 	};
 
 	//词法分析器的类构造 

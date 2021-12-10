@@ -202,6 +202,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			{
 				interpreter->Clear(hwnd);
 				interpreter->Interprete(hwnd,ofn.lpstrFile);
+				SetWindowTextW(hwnd, ofn.lpstrFile);
 			}
 			break;
 		default:

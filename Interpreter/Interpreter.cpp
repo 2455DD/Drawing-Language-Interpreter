@@ -8,6 +8,13 @@
 #include <codecvt>
 #include <comdef.h>
 
+
+#ifndef MCOLORLEGAL
+#define MCOLORLEGAL
+
+#define RGBIsLegal(color) (color>=0&&color<=255)
+#endif
+
 void Interpreter::refreshMatrix(){
 	// 缩放矩阵
 	double scale[3][3] = {
@@ -186,7 +193,14 @@ void Interpreter::SetPointSize(int size)
 
 void Interpreter::SetColor(int r, int g, int b)
 {
-	Color = FormatColor(r, g, b);
+	if (RGBIsLegal(r)&&RGBIsLegal(g)&&RGBIsLegal(b))
+	{
+		Color = FormatColor(r, g, b);
+	}else
+	{
+		ErrMessage(L"Syntax Error, RGB value should be from 0, 255");
+	}
+	
 }
 
 void Interpreter::SetColor(COLORREF colorref)
@@ -399,6 +413,24 @@ void Interpreter::scale_statement()
 	
 	DeleteTree(x_ptr);
 	DeleteTree(y_ptr);
+}
+
+void Interpreter::color_statement()
+{
+	grammar::color_statement();
+
+	SetColor(round(CalcExprValue(rgb_ptr[0])), round(CalcExprValue(rgb_ptr[1])), round(CalcExprValue(rgb_ptr[2])));
+	for (auto& tree_node : rgb_ptr)
+	{
+		DeleteTree(tree_node);
+	}
+}
+
+void Interpreter::size_statement()
+{
+	grammar::size_statement();
+	SetPointSize(CalcExprValue(size_ptr));
+	DeleteTree(size_ptr);
 }
 
 // Grammar 遗留部分，重载防止影响

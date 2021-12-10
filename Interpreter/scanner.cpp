@@ -37,10 +37,12 @@ struct Token Lexer::JudgeKeyToken(const char * c_str)
 	int count;
 	struct Token err_token;
 	int n = sizeof(TokenTab) / sizeof(TokenTab[0]);
-	for(count=0; count<n; count++)
-	{ 
-		if(strcmp(TokenTab[count].lexeme, c_str)==0) 
-			return TokenTab[count];
+	for (auto& token_tab : TokenTab)
+	{
+		if (strcmp(token_tab.lexeme, c_str)==0)
+		{
+			return token_tab;
+		}
 	}
 	memset(&err_token, 0, sizeof(err_token));
 	err_token.type = ERRTOKEN;

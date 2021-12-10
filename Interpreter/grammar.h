@@ -31,11 +31,13 @@ protected:
 	double  parameter;	// 参数T的存储空间
 	Token	token;		// 记号
 	tree_node_ptr 	start_ptr,	// 绘图起点表达式的语法树
-					end_ptr, 	// 绘图终点表达式的语法树
-					step_ptr,	// 步长表达式的语法树
-					x_ptr,		// 点的横坐标表达式的语法树
-					y_ptr,		// 点的横坐标表达式的语法树
-					angle_ptr;	// 旋转角度表达式的语法树
+		end_ptr, 	// 绘图终点表达式的语法树
+		step_ptr,	// 步长表达式的语法树
+		x_ptr,		// 点的横坐标表达式的语法树
+		y_ptr,		// 点的横坐标表达式的语法树
+		angle_ptr,	// 旋转角度表达式的语法树
+		size_ptr;	// 笔触大小表达式的语法树
+	tree_node_ptr   rgb_ptr[3];	// 颜色RGB表达式的语法树
 	Lexer 	Lexer;	// 词法分析器对象
 
 //辅助函数
@@ -63,8 +65,10 @@ forstatement -> for t from expression to expression step expression draw l_brack
 	virtual void origin_statement();
 	virtual void rot_statement();
 	virtual void scale_statement();
+	virtual void color_statement();
+	virtual void size_statement();
 
-/*
+	/*
 全部表达式的EBNF产生式，依据此进行下降递归构造语法树
 expression -> term { ( plus | minus ) term }
 term -> factor { ( mul | div ) factor }

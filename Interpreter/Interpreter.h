@@ -79,6 +79,8 @@ protected:
 	void origin_statement() override;
 	void rot_statement() override;
 	void scale_statement() override;
+	void color_statement() override;
+	void size_statement() override;
 };
 
 
